@@ -19,7 +19,7 @@ router.post('/api/customer/items/:id/purchases', function (req, res) {
         Machine.findOne()
         .then(function (machine) {
           machine.totalAmount = machine.totalAmount + (req.body.quantity * item.cost)
-          machine.machineLog.push({description: item.description, quantity: req.body.quantity})
+          machine.machineLog.push({description: item.description, quantity: item.quantity})
           machine.save()
           .then(function () {
             res.json(machine)

@@ -44,6 +44,7 @@ describe("Customer can purchase items from the vending machine", function () {
     .then(function (i) {
       item = i;
       const machine = new Machine()
+      machine.machineLog.push({quantity: 1})
     machine.save()
     .then(function(machine) {
       done();
@@ -57,12 +58,13 @@ describe("Customer can purchase items from the vending machine", function () {
     .send({
       description: 'soda',
       cost: 85,
-      quantity: 10
+      quantity: 1
     })
     .expect(200)
     .expect(function(res) {
-      assert.equal(res.body.machineAmount, 85)
-      assert.equal(res.body.item.quantity, 9)
+      console.log(res)
+      assert.equal(res.body.totalAmount, 85)
+      assert.equal(res.body.machineLog[1].quantity, 9)
     })
     .end(done)
   })

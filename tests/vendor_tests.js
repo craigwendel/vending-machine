@@ -6,11 +6,6 @@ const Item = require("../models/schema").Item
 const Machine = require('../models/schema').Machine
 
 describe("Vendor can put items in the machine and edit items in the machine", function () {
-  // afterEach(function(done){
-  //   Item.deleteOne().then( function(){
-  //     done()
-  //   })
-  // })
   beforeEach (function (done) {
     const i = new Item()
     i.description = 'chips'
